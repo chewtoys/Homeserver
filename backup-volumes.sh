@@ -7,6 +7,7 @@
 #  - Handle errors
 
 source backup-config.sh
+source utils.sh
 
 #Volumes we want to backup
 declare -A volumes
@@ -18,24 +19,7 @@ volumes["gotify"]="/app/data"
 volumes["node-red"]="/data"
 
 #Files and Folders here
-backupFolder="/home/pi/backup"
 tempBackupFolder="/tmp/bkp"
-encryptedFolder="/home/pi/encryptedVolumesOnMega"
-gocryptfsconfigs=("gocryptfs.conf" "gocryptfs.diriv") 
-
-array_contains () {
-  local e match="$1"
-  shift
-  for e; do [[ "$e" == "$match" ]] && return 0; done
-  return 1
-}
-
-notify() {
-  local title="$1"
-  local body="$2"
-
-  curl "https://${GOTIFY_URL}/message?token=${GOTIFY_API_KEY}" -F "title=${title}" -F "message=${body}"
-}
 
 # 1. Create the folder and check it's empty (folder  could be already there)
 mkdir ${backupFolder} > /dev/null 2>&1
