@@ -42,7 +42,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.invoiceninja.rule=Host(`${IP_ADDRESS}`)"
       - "traefik.http.routers.invoiceninja.entrypoints=invoiceninja"
-      - homepage.group=Productivity
+      - "homepage.group=Finance"
       - homepage.name=Invoice Ninja
       - homepage.icon=sh-invoice-ninja.svg
       - homepage.href=http://${IP_ADDRESS}:${PORT_INVOICENINJA}
