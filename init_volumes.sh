@@ -8,6 +8,10 @@ mkdir -p volumes/freshrss
 mkdir -p volumes/freshrss/data
 mkdir -p volumes/freshrss/extensions
 mkdir -p volumes/homepage
+mkdir -p volumes/invoiceninja/public
+mkdir -p volumes/invoiceninja/storage
+mkdir -p volumes/invoiceninja-redis
+mkdir -p volumes/invoiceninja-db
 mkdir -p volumes/invoiceshelf/data
 mkdir -p volumes/invoiceshelf/conf
 mkdir -p volumes/invoiceshelf-db

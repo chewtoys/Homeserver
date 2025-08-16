@@ -1,0 +1,92 @@
+x-logging: &default-logging
+  options:
+    max-size: "10m"
+    max-file: "3"
+  driver: json-file
+
+services:
+  invoiceninja:
+    build:
+      context: .
+    container_name: invoiceninja
+    image: invoiceninja/invoiceninja-debian:${TAG:-latest}
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    volumes:
+      - ./.env:/var/www/html/.env
+      # - ./php/php.ini:/usr/local/etc/php/conf.d/invoiceninja.ini:ro
+      # - ./php/php-fpm.conf:/usr/local/etc/php-fpm.d/invoiceninja.conf:ro
+      # - ./supervisor/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf:ro
+      - ~/volumes/invoiceninja/public:/var/www/html/public
+      - ~/volumes/invoiceninja/storage:/var/www/html/storage
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      invoiceninja-db:
+        condition: service_healthy
+      invoiceninja-redis:
+        condition: service_healthy
+    logging: *default-logging
+
+  invoiceninja-nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    container_name: invoiceninja-nginx
+    volumes:
+      - ./nginx:/etc/nginx/conf.d:ro
+      - ~/volumes/invoiceninja/public:/var/www/html/public:ro
+      - ~/volumes/invoiceninja/storage:/var/www/html/storage:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.invoiceninja.rule=Host(`${IP_ADDRESS}`)"
+      - "traefik.http.routers.invoiceninja.entrypoints=invoiceninja"
+      - homepage.group=Productivity
+      - homepage.name=Invoice Ninja
+      - homepage.icon=sh-invoice-ninja.svg
+      - homepage.href=http://${IP_ADDRESS}:${PORT_INVOICENINJA}
+      - homepage.description=Invoicing clients.
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - invoiceninja
+    logging: *default-logging
+
+  invoiceninja-db:
+    image: mysql:8
+    restart: unless-stopped
+    container_name: invoiceninja-db
+    env_file:
+      - ./.env
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - ~/volumes/invoiceninja-db:/var/lib/mysql
+    networks:
+      - backend
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u${MYSQL_USER}", "-p${MYSQL_PASSWORD}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    logging: *default-logging
+
+  invoiceninja-redis:
+    image: redis:alpine
+    restart: unless-stopped
+    container_name: invoiceninja-redis
+    volumes:
+      - ~/volumes/invoiceninja-redis:/data
+    networks:
+      - backend
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    logging: *default-logging

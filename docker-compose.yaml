@@ -5,6 +5,7 @@ include:
   # - compose/duckdns.yaml
   - compose/freshrss.yaml
   - compose/invoice_shelf.yaml
+  - compose/invoiceninja/invoiceninja.yaml
   - compose/hoarder/hoarder.yaml
   - compose/homepage.yaml
   - compose/mealie.yaml
@@ -48,6 +49,7 @@ services:
       - --entryPoints.invoiceshelf.address=:${PORT_INVOICESHELF}
       - --entryPoints.searxng.address=:${PORT_SEARXNG}
       - --entryPoints.homepage.address=:${PORT_HOMEPAGE}
+      - --entryPoints.invoiceninja.address=:${PORT_INVOICENINJA}
       - --providers.docker.exposedbydefault=false
       - --providers.docker.network=${NETWORK_NAME}
       # - --certificatesResolvers.le.acme.email=kwbmm@${URL}
@@ -79,6 +81,7 @@ services:
       - "${PORT_INVOICESHELF}:${PORT_INVOICESHELF}"
       - "${PORT_SEARXNG}:${PORT_SEARXNG}"
       - "${PORT_HOMEPAGE}:${PORT_HOMEPAGE}"
+      - "${PORT_INVOICENINJA}:${PORT_INVOICENINJA}"
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
