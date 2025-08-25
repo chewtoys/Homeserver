@@ -1,7 +1,7 @@
 version: "3"
 
 include:
-  - compose/actualbudget.yaml
+  - compose/actualbudget/actualbudget.yaml
   # - compose/changedetection.yaml
   # - compose/duckdns.yaml
   - compose/freshrss.yaml

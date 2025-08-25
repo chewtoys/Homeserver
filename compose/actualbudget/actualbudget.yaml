@@ -23,3 +23,7 @@ services:
     restart: unless-stopped
     networks:
       - frontend
+
+  actual-auto-sync:
+    image: seriouslag/actual-auto-sync:latest
+    env_file: .actual.env
