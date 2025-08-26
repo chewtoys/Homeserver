@@ -9,6 +9,7 @@ include:
   - compose/invoiceninja/invoiceninja.yaml
   - compose/hoarder/hoarder.yaml
   - compose/homepage.yaml
+  - compose/manyfold/manyfold.yaml
   - compose/mealie.yaml
   - compose/newt.yaml
   # - compose/reactive-resume/reactive-resume.yaml
@@ -39,6 +40,7 @@ services:
       - --entryPoints.mealie.address=:${PORT_MEALIE}
       - --entryPoints.changedetection.address=:${PORT_CHANGEDETECTION}
       - --entryPoints.redlib.address=:${PORT_REDLIB}
+      - --entryPoints.manyfold.address=:${PORT_MANYFOLD}
       
       - --entryPoints.rx-resume.address=:${PORT_RX_RES}
       - --entryPoints.rx-res-chrome.address=:${PORT_RX_RES_CHROME}
@@ -74,6 +76,7 @@ services:
       - "${PORT_HOMEPAGE}:${PORT_HOMEPAGE}"
       - "${PORT_INVOICENINJA}:${PORT_INVOICENINJA}"
       - "${PORT_ACTUALBUDGET}:${PORT_ACTUALBUDGET}"
+      - "${PORT_MANYFOLD}:${PORT_MANYFOLD}"
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock

@@ -1,0 +1,32 @@
+---
+services:
+  manyfold:
+    image: lscr.io/linuxserver/manyfold:latest
+    container_name: manyfold
+    env_file:
+      - .manyfold.env
+    volumes:
+      - ~/volumes/manyfold/config:/config:delegated
+      - ~/volumes/manyfold/libraries:/libraries:delegated
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.manyfold.rule=Host(`${IP_ADDRESS}`)"
+      - "traefik.http.routers.manyfold.entrypoints=manyfold"
+      - homepage.group=Misc
+      - homepage.name=Manyfold
+      - homepage.icon=manyfold.svg
+      - homepage.href=http://${IP_ADDRESS}:${PORT_MANYFOLD}
+      - homepage.description=3D model and asset management.
+    restart: unless-stopped
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - manyfold-redis
+
+  manyfold-redis:
+    image: redis:alpine
+    container_name: manifold-redis
+    restart: unless-stopped
+    networks:
+      - backend

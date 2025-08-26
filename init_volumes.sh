@@ -21,6 +21,8 @@ mkdir -p volumes/changedetection
 mkdir -p volumes/hoarder
 mkdir -p volumes/mealie
 mkdir -p volumes/mealie-db
+mkdir -p volumes/manyfold/config
+mkdir -p volumes/manyfold/libraries
 mkdir -p volumes/meili
 mkdir -p volumes/vikunja/
 mkdir -p volumes/vikunja-db
