@@ -16,6 +16,7 @@ include:
   - compose/redlib/redlib.yaml
   # - compose/ryot.yaml
   - compose/searxng/searxng.yaml
+  - compose/silverbullet/silverbullet.yaml
   - compose/ttrss.yaml
   - compose/vikunja/vikunja.yaml
   - compose/watchtower.yaml
@@ -53,6 +54,7 @@ services:
       - --entryPoints.searxng.address=:${PORT_SEARXNG}
       - --entryPoints.homepage.address=:${PORT_HOMEPAGE}
       - --entryPoints.invoiceninja.address=:${PORT_INVOICENINJA}
+      - --entryPoints.silverbullet.address=:${PORT_SILVERBULLET}
       - --providers.docker.exposedbydefault=false
       - --providers.docker.network=${NETWORK_NAME}
     ports:
@@ -77,6 +79,7 @@ services:
       - "${PORT_INVOICENINJA}:${PORT_INVOICENINJA}"
       - "${PORT_ACTUALBUDGET}:${PORT_ACTUALBUDGET}"
       - "${PORT_MANYFOLD}:${PORT_MANYFOLD}"
+      - "${PORT_SILVERBULLET}:${PORT_SILVERBULLET}"
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
