@@ -25,5 +25,7 @@ services:
       - frontend
 
   actual-auto-sync:
+    container_name: actual-auto-sync
     image: seriouslag/actual-auto-sync:latest
     env_file: .actual.env
+    restart: unless-stopped
