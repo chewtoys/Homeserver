@@ -26,7 +26,7 @@ services:
 
   manyfold-redis:
     image: redis:alpine
-    container_name: manifold-redis
+    container_name: manyfold-redis
     restart: unless-stopped
     networks:
       - backend
