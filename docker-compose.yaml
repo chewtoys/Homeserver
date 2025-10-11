@@ -2,7 +2,6 @@ version: "3"
 
 include:
   - compose/actualbudget/actualbudget.yaml
-  # - compose/changedetection.yaml
   # - compose/duckdns.yaml
   - compose/freshrss/freshrss.yaml
   - compose/invoiceshelf/invoiceshelf.yaml
@@ -14,7 +13,6 @@ include:
   - compose/newt.yaml
   # - compose/reactive-resume/reactive-resume.yaml
   - compose/redlib/redlib.yaml
-  # - compose/ryot.yaml
   - compose/searxng/searxng.yaml
   - compose/silverbullet/silverbullet.yaml
   - compose/ttrss/ttrss.yaml
@@ -40,7 +38,6 @@ services:
 
       - --entryPoints.webSecure.address=:443
       - --entryPoints.actualbudget.address=:${PORT_ACTUALBUDGET}
-      - --entryPoints.changedetection.address=:${PORT_CHANGEDETECTION}
       - --entryPoints.freshrss.address=:${PORT_FRESHRSS}
       - --entryPoints.hoarder.address=:${PORT_HOARDER}
       - --entryPoints.homepage.address=:${PORT_HOMEPAGE}
@@ -52,7 +49,6 @@ services:
       - --entryPoints.rx-res-chrome.address=:${PORT_RX_RES_CHROME}
       - --entryPoints.rx-res-minio.address=:${PORT_RX_RES_MINIO}
       - --entryPoints.rx-resume.address=:${PORT_RX_RES}
-      - --entryPoints.ryot.address=:${PORT_RYOT}
       - --entryPoints.searxng.address=:${PORT_SEARXNG}
       - --entryPoints.silverbullet.address=:${PORT_SILVERBULLET}
       - --entryPoints.traefik.address=:${PORT_DASHBOARD}
@@ -65,7 +61,6 @@ services:
       # For certificates renewal
       - "443:443"
       - "${PORT_ACTUALBUDGET}:${PORT_ACTUALBUDGET}"
-      - "${PORT_CHANGEDETECTION}:${PORT_CHANGEDETECTION}"
       - "${PORT_FRESHRSS}:${PORT_FRESHRSS}"
       - "${PORT_HOARDER}:${PORT_HOARDER}"
       - "${PORT_HOMEPAGE}:${PORT_HOMEPAGE}"
@@ -77,7 +72,6 @@ services:
       - "${PORT_RX_RES_CHROME}:${PORT_RX_RES_CHROME}"
       - "${PORT_RX_RES_MINIO}:${PORT_RX_RES_MINIO}"
       - "${PORT_RX_RES}:${PORT_RX_RES}"
-      - "${PORT_RYOT}:${PORT_RYOT}"
       - "${PORT_SEARXNG}:${PORT_SEARXNG}"
       - "${PORT_SILVERBULLET}:${PORT_SILVERBULLET}"
       - "${PORT_TTRSS}:${PORT_TTRSS}"
