@@ -26,60 +26,58 @@ services:
     image: traefik:v3.5
     container_name: traefik
     command:
-      - --log.level=DEBUG
+      # - --log.level=DEBUG
       - --api=true
       - --api.dashboard=true
+      
       - --providers.docker
-      - --entryPoints.webSecure.address=:443
-      
-      - --entryPoints.ttrss.address=:${PORT_TTRSS}
-      - --entryPoints.ttrss.forwardedHeaders.insecure
-
-      - --entryPoints.freshrss.address=:${PORT_FRESHRSS}
-      - --entryPoints.ryot.address=:${PORT_RYOT}
-      - --entryPoints.hoarder.address=:${PORT_HOARDER}
-      - --entryPoints.mealie.address=:${PORT_MEALIE}
-      - --entryPoints.changedetection.address=:${PORT_CHANGEDETECTION}
-      - --entryPoints.redlib.address=:${PORT_REDLIB}
-      - --entryPoints.manyfold.address=:${PORT_MANYFOLD}
-      
-      - --entryPoints.rx-resume.address=:${PORT_RX_RES}
-      - --entryPoints.rx-res-chrome.address=:${PORT_RX_RES_CHROME}
-      - --entryPoints.rx-res-minio.address=:${PORT_RX_RES_MINIO}
-      
-      - --entryPoints.traefik.address=:${PORT_DASHBOARD}
-      - --entryPoints.actualbudget.address=:${PORT_ACTUALBUDGET}
-      - --entryPoints.vikunja.address=:${PORT_VIKUNJA}
-      - --entryPoints.invoiceshelf.address=:${PORT_INVOICESHELF}
-      - --entryPoints.searxng.address=:${PORT_SEARXNG}
-      - --entryPoints.homepage.address=:${PORT_HOMEPAGE}
-      - --entryPoints.invoiceninja.address=:${PORT_INVOICENINJA}
-      - --entryPoints.silverbullet.address=:${PORT_SILVERBULLET}
       - --providers.docker.exposedbydefault=false
       - --providers.docker.network=${NETWORK_NAME}
+
+      - --entryPoints.webSecure.address=:443
+      - --entryPoints.actualbudget.address=:${PORT_ACTUALBUDGET}
+      - --entryPoints.changedetection.address=:${PORT_CHANGEDETECTION}
+      - --entryPoints.freshrss.address=:${PORT_FRESHRSS}
+      - --entryPoints.hoarder.address=:${PORT_HOARDER}
+      - --entryPoints.homepage.address=:${PORT_HOMEPAGE}
+      - --entryPoints.invoiceninja.address=:${PORT_INVOICENINJA}
+      - --entryPoints.invoiceshelf.address=:${PORT_INVOICESHELF}
+      - --entryPoints.manyfold.address=:${PORT_MANYFOLD}
+      - --entryPoints.mealie.address=:${PORT_MEALIE}
+      - --entryPoints.redlib.address=:${PORT_REDLIB}
+      - --entryPoints.rx-res-chrome.address=:${PORT_RX_RES_CHROME}
+      - --entryPoints.rx-res-minio.address=:${PORT_RX_RES_MINIO}
+      - --entryPoints.rx-resume.address=:${PORT_RX_RES}
+      - --entryPoints.ryot.address=:${PORT_RYOT}
+      - --entryPoints.searxng.address=:${PORT_SEARXNG}
+      - --entryPoints.silverbullet.address=:${PORT_SILVERBULLET}
+      - --entryPoints.traefik.address=:${PORT_DASHBOARD}
+      - --entryPoints.ttrss.address=:${PORT_TTRSS}
+      - --entryPoints.ttrss.forwardedHeaders.insecure
+      - --entryPoints.vikunja.address=:${PORT_VIKUNJA}
     ports:
       # The Web UI
       - "${PORT_DASHBOARD}:${PORT_DASHBOARD}"
       # For certificates renewal
       - "443:443"
-      - "${PORT_TTRSS}:${PORT_TTRSS}"
-      - "${PORT_FRESHRSS}:${PORT_FRESHRSS}"
-      - "${PORT_RYOT}:${PORT_RYOT}"
+      - "${PORT_ACTUALBUDGET}:${PORT_ACTUALBUDGET}"
       - "${PORT_CHANGEDETECTION}:${PORT_CHANGEDETECTION}"
-      - "${PORT_MEALIE}:${PORT_MEALIE}"
-      - "${PORT_REDLIB}:${PORT_REDLIB}"
-      - "${PORT_RX_RES}:${PORT_RX_RES}"
-      - "${PORT_RX_RES_MINIO}:${PORT_RX_RES_MINIO}"
-      - "${PORT_RX_RES_CHROME}:${PORT_RX_RES_CHROME}"
-      - "${PORT_VIKUNJA}:${PORT_VIKUNJA}"
+      - "${PORT_FRESHRSS}:${PORT_FRESHRSS}"
       - "${PORT_HOARDER}:${PORT_HOARDER}"
-      - "${PORT_INVOICESHELF}:${PORT_INVOICESHELF}"
-      - "${PORT_SEARXNG}:${PORT_SEARXNG}"
       - "${PORT_HOMEPAGE}:${PORT_HOMEPAGE}"
       - "${PORT_INVOICENINJA}:${PORT_INVOICENINJA}"
-      - "${PORT_ACTUALBUDGET}:${PORT_ACTUALBUDGET}"
+      - "${PORT_INVOICESHELF}:${PORT_INVOICESHELF}"
       - "${PORT_MANYFOLD}:${PORT_MANYFOLD}"
+      - "${PORT_MEALIE}:${PORT_MEALIE}"
+      - "${PORT_REDLIB}:${PORT_REDLIB}"
+      - "${PORT_RX_RES_CHROME}:${PORT_RX_RES_CHROME}"
+      - "${PORT_RX_RES_MINIO}:${PORT_RX_RES_MINIO}"
+      - "${PORT_RX_RES}:${PORT_RX_RES}"
+      - "${PORT_RYOT}:${PORT_RYOT}"
+      - "${PORT_SEARXNG}:${PORT_SEARXNG}"
       - "${PORT_SILVERBULLET}:${PORT_SILVERBULLET}"
+      - "${PORT_TTRSS}:${PORT_TTRSS}"
+      - "${PORT_VIKUNJA}:${PORT_VIKUNJA}"
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
