@@ -23,10 +23,10 @@ include:
 
 services:
   traefik:
-    image: traefik:v2.0
+    image: traefik:v3.5
     container_name: traefik
     command:
-#      - --log.level=DEBUG
+      - --log.level=DEBUG
       - --api=true
       - --api.dashboard=true
       - --providers.docker
