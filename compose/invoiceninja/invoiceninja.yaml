@@ -39,9 +39,6 @@ services:
       - ~/volumes/invoiceninja/public:/var/www/html/public:ro
       - ~/volumes/invoiceninja/storage:/var/www/html/storage:ro
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.invoiceninja.rule=Host(`${IP_ADDRESS}`)"
-      - "traefik.http.routers.invoiceninja.entrypoints=invoiceninja"
       - "homepage.group=Finance"
       - homepage.name=Invoice Ninja
       - homepage.icon=sh-invoice-ninja.svg

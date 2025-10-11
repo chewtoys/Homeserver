@@ -7,9 +7,6 @@ services:
         limits:
           memory: 1000M 
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.mealie.rule=Host(`${IP_ADDRESS}`)"
-      - "traefik.http.routers.mealie.entrypoints=mealie"
       - homepage.group=Misc
       - homepage.name=Mealie
       - homepage.icon=mealie.svg

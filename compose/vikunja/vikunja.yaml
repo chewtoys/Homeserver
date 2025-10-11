@@ -13,9 +13,9 @@ services:
       - traefik
     restart: unless-stopped
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.vikunja.rule=Host(`${VIKUNJA_ENDPOINT_URL}`)"
-      - "traefik.http.routers.vikunja.entrypoints=vikunja"
+      # - "traefik.enable=true"
+      # - "traefik.http.routers.vikunja.rule=Host(`${VIKUNJA_ENDPOINT_URL}`)"
+      # - "traefik.http.routers.vikunja.entrypoints=vikunja"
       - "homepage.group=Productivity"
       - "homepage.name=Vikunja"
       - "homepage.icon=vikunja.svg"

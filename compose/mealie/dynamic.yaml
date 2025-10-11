@@ -1,0 +1,13 @@
+http:
+  routers:
+    mealie:
+      entryPoints:
+        - mealie
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: mealie-service
+
+  services:
+    mealie-service:
+      loadBalancer:
+        servers:
+          - url: http://mealie:9000

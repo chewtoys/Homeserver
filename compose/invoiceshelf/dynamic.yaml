@@ -1,0 +1,13 @@
+http:
+  routers:
+    invoiceshelf:
+      entryPoints:
+        - invoiceshelf
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: invoiceshelf-service
+
+  services:
+    invoiceshelf-service:
+      loadBalancer:
+        servers:
+          - url: http://invoiceshelf

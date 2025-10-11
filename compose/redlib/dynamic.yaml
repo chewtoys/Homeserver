@@ -1,0 +1,13 @@
+http:
+  routers:
+    redlib:
+      entryPoints:
+        - redlib
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: redlib-service
+
+  services:
+    redlib-service:
+      loadBalancer:
+        servers:
+          - url: http://redlib:8080

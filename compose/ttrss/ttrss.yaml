@@ -15,9 +15,6 @@ services:
       - ttrss-db
       - traefik
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.ttrss.rule=Host(`${TTRSS_ENDPOINT_URL}`)"
-      - "traefik.http.routers.ttrss.entrypoints=ttrss"
       - homepage.group=RSS
       - homepage.name=Tiny Tiny RSS
       - homepage.icon=tinytinyrss.png

@@ -1,0 +1,13 @@
+http:
+  routers:
+    homepage:
+      entryPoints:
+        - homepage
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: homepage-service
+
+  services:
+    homepage-service:
+      loadBalancer:
+        servers:
+          - url: http://homepage:3000

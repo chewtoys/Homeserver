@@ -1,0 +1,13 @@
+http:
+  routers:
+    ttrss:
+      entryPoints:
+        - ttrss
+      rule: Host(`{{ env "TTRSS_ENDPOINT_URL" }}`)
+      service: ttrss-service
+
+  services:
+    ttrss-service:
+      loadBalancer:
+        servers:
+          - url: http://ttrss

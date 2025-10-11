@@ -1,0 +1,13 @@
+http:
+  routers:
+    freshrss:
+      entryPoints:
+        - freshrss
+      rule: Host(`{{ env "FRESHRSS_ENDPOINT_URL" }}`)
+      service: freshrss-service
+
+  services:
+    freshrss-service:
+      loadBalancer:
+        servers:
+          - url: http://freshrss

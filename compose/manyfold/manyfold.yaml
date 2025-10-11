@@ -9,9 +9,6 @@ services:
       - ~/volumes/manyfold/config:/config:delegated
       - ~/volumes/manyfold/libraries:/libraries:delegated
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.manyfold.rule=Host(`${IP_ADDRESS}`)"
-      - "traefik.http.routers.manyfold.entrypoints=manyfold"
       - homepage.group=Misc
       - homepage.name=Manyfold
       - homepage.icon=manyfold.svg

@@ -10,9 +10,6 @@ services:
     depends_on:
       - traefik
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.silverbullet.rule=Host(`${SILVERBULLET_ENDPOINT_URL}`)"
-      - "traefik.http.routers.silverbullet.entrypoints=silverbullet"
       - homepage.group=Productivity
       - homepage.name=Silverbullet
       - homepage.icon=silverbullet.png

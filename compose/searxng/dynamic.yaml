@@ -1,0 +1,13 @@
+http:
+  routers:
+    searxng:
+      entryPoints:
+        - searxng
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: searxng-service
+
+  services:
+    searxng-service:
+      loadBalancer:
+        servers:
+          - url: http://searxng:8080

@@ -4,20 +4,20 @@ include:
   - compose/actualbudget/actualbudget.yaml
   # - compose/changedetection.yaml
   # - compose/duckdns.yaml
-  - compose/freshrss.yaml
-  - compose/invoice_shelf.yaml
+  - compose/freshrss/freshrss.yaml
+  - compose/invoiceshelf/invoiceshelf.yaml
   - compose/invoiceninja/invoiceninja.yaml
   - compose/hoarder/hoarder.yaml
-  - compose/homepage.yaml
+  - compose/homepage/homepage.yaml
   - compose/manyfold/manyfold.yaml
-  - compose/mealie.yaml
+  - compose/mealie/mealie.yaml
   - compose/newt.yaml
   # - compose/reactive-resume/reactive-resume.yaml
   - compose/redlib/redlib.yaml
   # - compose/ryot.yaml
   - compose/searxng/searxng.yaml
   - compose/silverbullet/silverbullet.yaml
-  - compose/ttrss.yaml
+  - compose/ttrss/ttrss.yaml
   - compose/vikunja/vikunja.yaml
   - compose/watchtower.yaml
 
@@ -25,14 +25,18 @@ services:
   traefik:
     image: traefik:v3.5
     container_name: traefik
+    env_file: .env
     command:
-      # - --log.level=DEBUG
+      - --log.level=DEBUG
       - --api=true
       - --api.dashboard=true
       
       - --providers.docker
       - --providers.docker.exposedbydefault=false
       - --providers.docker.network=${NETWORK_NAME}
+
+      - --providers.file.directory=/etc/traefik/dynamic
+      - --providers.file.watch=true
 
       - --entryPoints.webSecure.address=:443
       - --entryPoints.actualbudget.address=:${PORT_ACTUALBUDGET}
@@ -81,6 +85,19 @@ services:
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./compose/actualbudget/dynamic.yaml:/etc/traefik/dynamic/actualbudget.yaml
+      - ./compose/freshrss/dynamic.yaml:/etc/traefik/dynamic/freshrss.yaml
+      - ./compose/hoarder/dynamic.yaml:/etc/traefik/dynamic/hoarder.yaml
+      - ./compose/homepage/dynamic.yaml:/etc/traefik/dynamic/homepage.yaml
+      - ./compose/invoiceninja/dynamic.yaml:/etc/traefik/dynamic/invoiceninja.yaml
+      - ./compose/invoiceshelf/dynamic.yaml:/etc/traefik/dynamic/invoiceshelf.yaml
+      - ./compose/manyfold/dynamic.yaml:/etc/traefik/dynamic/manyfold.yaml
+      - ./compose/mealie/dynamic.yaml:/etc/traefik/dynamic/mealie.yaml
+      - ./compose/redlib/dynamic.yaml:/etc/traefik/dynamic/redlib.yaml
+      - ./compose/searxng/dynamic.yaml:/etc/traefik/dynamic/searxng.yaml
+      - ./compose/silverbullet/dynamic.yaml:/etc/traefik/dynamic/silverbullet.yaml
+      - ./compose/ttrss/dynamic.yaml:/etc/traefik/dynamic/ttrss.yaml
+      - ./compose/vikunja/dynamic.yaml:/etc/traefik/dynamic/vikunja.yaml
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`${IP_ADDRESS}`)"

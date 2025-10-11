@@ -18,9 +18,6 @@ services:
     image: invoiceshelf/invoiceshelf:latest
     container_name: invoiceshelf
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.invoiceshelf.rule=Host(`${IP_ADDRESS}`)"
-      - "traefik.http.routers.invoiceshelf.entrypoints=invoiceshelf"
       - "homepage.group=Finance"
       - homepage.name=Invoice Shelf
       - homepage.icon=sh-invoiceshelf.svg

@@ -1,0 +1,13 @@
+http:
+  routers:
+    vikunja:
+      entryPoints:
+        - vikunja
+      rule: Host(`{{ env "VIKUNJA_ENDPOINT_URL" }}`)
+      service: vikunja-service
+
+  services:
+    vikunja-service:
+      loadBalancer:
+        servers:
+          - url: http://vikunja:3456

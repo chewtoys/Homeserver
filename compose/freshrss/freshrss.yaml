@@ -12,9 +12,6 @@ services:
     depends_on:
       - traefik
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.freshrss.rule=Host(`${FRESHRSS_ENDPOINT_URL}`)"
-      - "traefik.http.routers.freshrss.entrypoints=freshrss"
       - "homepage.group=RSS"
       - "homepage.name=FreshRSS"
       - "homepage.icon=freshrss.svg"

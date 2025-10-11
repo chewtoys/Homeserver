@@ -7,9 +7,6 @@ services:
     depends_on:
       - traefik
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.searxng.rule=Host(`${IP_ADDRESS}`)"
-      - "traefik.http.routers.searxng.entrypoints=searxng"
       - homepage.group=Web
       - homepage.name=Searxng
       - homepage.icon=searxng.svg

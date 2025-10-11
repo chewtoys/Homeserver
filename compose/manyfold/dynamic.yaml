@@ -1,0 +1,13 @@
+http:
+  routers:
+    manyfold:
+      entryPoints:
+        - manyfold
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: manyfold-service
+
+  services:
+    manyfold-service:
+      loadBalancer:
+        servers:
+          - url: http://manyfold:3214

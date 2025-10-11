@@ -12,10 +12,6 @@ services:
     cap_drop:
       - ALL
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.redlib.rule=Host(`${IP_ADDRESS}`)"
-      - "traefik.http.routers.redlib.entrypoints=redlib"
-      - "traefik.http.services.redlib.loadbalancer.server.port=8080"
       - homepage.group=Web
       - homepage.name=Reddit
       - homepage.icon=redlib.svg

@@ -1,0 +1,13 @@
+http:
+  routers:
+    hoarder:
+      entryPoints:
+        - hoarder
+      rule: Host(`{{ env "HOARDER_ENDPOINT_URL" }}`)
+      service: hoarder-service
+
+  services:
+    hoarder-service:
+      loadBalancer:
+        servers:
+          - url: http://hoarder:3000

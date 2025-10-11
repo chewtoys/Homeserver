@@ -1,0 +1,13 @@
+http:
+  routers:
+    actualbudget:
+      entryPoints:
+        - actualbudget
+      rule: Host(`{{ env "ACTUALBUDGET_ENDPOINT_URL" }}`)
+      service: actualbudget-service
+
+  services:
+    actualbudget-service:
+      loadBalancer:
+        servers:
+          - url: http://actualbudget:5006

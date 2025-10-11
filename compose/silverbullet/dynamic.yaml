@@ -1,0 +1,13 @@
+http:
+  routers:
+    silverbullet:
+      entryPoints:
+        - silverbullet
+      rule: Host(`{{ env "SILVERBULLET_ENDPOINT_URL" }}`)
+      service: silverbullet-service
+
+  services:
+    silverbullet-service:
+      loadBalancer:
+        servers:
+          - url: http://silverbullet:3000

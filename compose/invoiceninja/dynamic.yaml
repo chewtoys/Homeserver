@@ -1,0 +1,13 @@
+http:
+  routers:
+    invoiceninja:
+      entryPoints:
+        - invoiceninja
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: invoiceninja-service
+
+  services:
+    invoiceninja-service:
+      loadBalancer:
+        servers:
+          - url: http://invoiceninja-nginx
