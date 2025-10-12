@@ -5,6 +5,8 @@ http:
         - mealie
       rule: Host(`{{ env "IP_ADDRESS" }}`)
       service: mealie-service
+      middlewares:
+        - sablier-mealie@file
 
   services:
     mealie-service:

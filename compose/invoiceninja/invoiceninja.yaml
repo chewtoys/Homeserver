@@ -29,6 +29,9 @@ services:
       invoiceninja-redis:
         condition: service_healthy
     logging: *default-logging
+    labels:
+      - sablier.enable=true
+      - sablier.group=invoiceninja
 
   invoiceninja-nginx:
     image: nginx:alpine
@@ -44,6 +47,8 @@ services:
       - homepage.icon=sh-invoice-ninja.svg
       - homepage.href=http://${IP_ADDRESS}:${PORT_INVOICENINJA}
       - homepage.description=Invoicing clients.
+      - sablier.enable=true
+      - sablier.group=invoiceninja
     networks:
       - frontend
       - backend
@@ -72,6 +77,9 @@ services:
       timeout: 5s
       retries: 5
     logging: *default-logging
+    labels:
+      - sablier.enable=true
+      - sablier.group=invoiceninja
 
   invoiceninja-redis:
     image: redis:alpine
@@ -87,3 +95,6 @@ services:
       timeout: 5s
       retries: 5
     logging: *default-logging
+    labels:
+      - sablier.enable=true
+      - sablier.group=invoiceninja

@@ -13,6 +13,7 @@ include:
   - compose/newt.yaml
   # - compose/reactive-resume/reactive-resume.yaml
   - compose/redlib/redlib.yaml
+  - compose/sablier/sablier.yaml
   - compose/searxng/searxng.yaml
   - compose/silverbullet/silverbullet.yaml
   - compose/ttrss/ttrss.yaml
@@ -25,7 +26,7 @@ services:
     container_name: traefik
     env_file: .env
     command:
-      - --log.level=DEBUG
+      # - --log.level=DEBUG
       - --api=true
       - --api.dashboard=true
       
@@ -55,6 +56,9 @@ services:
       - --entryPoints.ttrss.address=:${PORT_TTRSS}
       - --entryPoints.ttrss.forwardedHeaders.insecure
       - --entryPoints.vikunja.address=:${PORT_VIKUNJA}
+
+      - --experimental.plugins.sablier.modulename=github.com/sablierapp/sablier
+      - --experimental.plugins.sablier.version=v1.10.1
     ports:
       # The Web UI
       - "${PORT_DASHBOARD}:${PORT_DASHBOARD}"
@@ -88,6 +92,7 @@ services:
       - ./compose/manyfold/dynamic.yaml:/etc/traefik/dynamic/manyfold.yaml
       - ./compose/mealie/dynamic.yaml:/etc/traefik/dynamic/mealie.yaml
       - ./compose/redlib/dynamic.yaml:/etc/traefik/dynamic/redlib.yaml
+      - ./compose/sablier/dynamic.yaml:/etc/traefik/dynamic/sablier.yaml
       - ./compose/searxng/dynamic.yaml:/etc/traefik/dynamic/searxng.yaml
       - ./compose/silverbullet/dynamic.yaml:/etc/traefik/dynamic/silverbullet.yaml
       - ./compose/ttrss/dynamic.yaml:/etc/traefik/dynamic/ttrss.yaml

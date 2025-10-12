@@ -5,6 +5,8 @@ http:
         - manyfold
       rule: Host(`{{ env "IP_ADDRESS" }}`)
       service: manyfold-service
+      middlewares:
+        - sablier-manyfold@file
 
   services:
     manyfold-service:

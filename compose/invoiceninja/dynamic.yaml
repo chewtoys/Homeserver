@@ -5,6 +5,8 @@ http:
         - invoiceninja
       rule: Host(`{{ env "IP_ADDRESS" }}`)
       service: invoiceninja-service
+      middlewares:
+        - sablier-invoiceninja@file
 
   services:
     invoiceninja-service:

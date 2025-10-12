@@ -12,6 +12,8 @@ services:
       - homepage.icon=mealie.svg
       - homepage.href=http://${IP_ADDRESS}:${PORT_MEALIE}
       - homepage.description=Food recipe.
+      - sablier.enable=true
+      - sablier.group=mealie
     depends_on:
       - mealie-db
       - traefik
@@ -49,3 +51,6 @@ services:
       POSTGRES_USER: mealie-db
     networks:
       - backend
+    labels:
+      - sablier.enable=true
+      - sablier.group=mealie

@@ -13,6 +13,9 @@ services:
     networks:
       - backend
     restart: unless-stopped
+    labels:
+      - sablier.enable=true
+      - sablier.group=invoiceshelf
 
   invoiceshelf:
     image: invoiceshelf/invoiceshelf:latest
@@ -23,6 +26,9 @@ services:
       - homepage.icon=sh-invoiceshelf.svg
       - homepage.href=http://${IP_ADDRESS}:${PORT_INVOICESHELF}
       - homepage.description=Invoicing clients.
+      - sablier.enable=true
+      - sablier.group=invoiceshelf
+
     volumes:
       - ~/volumes/invoiceshelf/data:/data
       - ~/volumes/invoiceshelf/conf:/conf

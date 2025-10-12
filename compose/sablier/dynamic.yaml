@@ -1,0 +1,49 @@
+http:
+  middlewares:
+    sablier-manyfold:
+      plugin:
+        sablier:
+          group: manyfold
+          dynamic:
+            displayName: Manyfold startup
+            refreshFrequency: 5s
+            showDetails: "true"
+            theme: hacker-terminal
+          sablierUrl: http://sablier:10000
+          sessionDuration: 1m
+
+    sablier-invoiceshelf:
+      plugin:
+        sablier:
+          group: invoiceshelf
+          dynamic:
+            displayName: Invoiceshelf startup
+            refreshFrequency: 5s
+            showDetails: "true"
+            theme: hacker-terminal
+          sablierUrl: http://sablier:10000
+          sessionDuration: 15m
+
+    sablier-invoiceninja:
+      plugin:
+        sablier:
+          group: invoiceninja
+          dynamic:
+            displayName: Invoiceninja startup
+            refreshFrequency: 5s
+            showDetails: "true"
+            theme: hacker-terminal
+          sablierUrl: http://sablier:10000
+          sessionDuration: 15m
+
+    sablier-mealie:
+      plugin:
+        sablier:
+          group: mealie
+          dynamic:
+            displayName: Mealie startup
+            refreshFrequency: 5s
+            showDetails: "true"
+            theme: hacker-terminal
+          sablierUrl: http://sablier:10000
+          sessionDuration: 60m
