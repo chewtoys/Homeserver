@@ -1,6 +1,6 @@
 services:
   mealie:
-    image: ghcr.io/mealie-recipes/mealie:v1.2.0 
+    image: ghcr.io/mealie-recipes/mealie:latest
     container_name: mealie
     deploy:
       resources:
@@ -15,7 +15,6 @@ services:
       - sablier.enable=true
       - sablier.group=mealie
     depends_on:
-      - mealie-db
       - traefik
     volumes:
       - ~/volumes/mealie:/app/data/
@@ -25,32 +24,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Paris
-      - MAX_WORKERS=1
-      - WEB_CONCURRENCY=1
       - BASE_URL=https://mealie.yourdomain.com
-
-    # Database Settings
-      - DB_ENGINE=postgres
-      - POSTGRES_USER=mealie-db
-      - POSTGRES_PASSWORD=mealie-db
-      - POSTGRES_SERVER=mealie-db
-      - POSTGRES_PORT=5432
-      - POSTGRES_DB=mealie-db
     restart: unless-stopped
     networks:
       - frontend
-      - backend
-  mealie-db:
-    container_name: mealie-db
-    image: postgres:15.10-alpine3.19
-    restart: unless-stopped
-    volumes:
-      - ~/volumes/mealie-db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: mealie-db
-      POSTGRES_USER: mealie-db
-    networks:
-      - backend
-    labels:
-      - sablier.enable=true
-      - sablier.group=mealie
