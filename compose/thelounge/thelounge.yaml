@@ -1,0 +1,17 @@
+services:
+  thelounge:
+    image: ghcr.io/thelounge/thelounge:latest
+    restart: unless-stopped
+    depends_on:
+      - traefik
+    container_name: "thelounge"
+    volumes:
+      - ~/volumes/thelounge:/var/opt/thelounge
+    labels:
+      - homepage.group=Web
+      - homepage.name=IRC
+      - homepage.icon=sh-the-lounge.svg
+      - homepage.href=http://${IP_ADDRESS}:${PORT_THELOUNGE}
+      - homepage.description=IRC Client
+    networks:
+      - frontend

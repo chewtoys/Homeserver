@@ -1,0 +1,13 @@
+http:
+  routers:
+    thelounge:
+      entryPoints:
+        - thelounge
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: thelounge-service
+
+  services:
+    thelounge-service:
+      loadBalancer:
+        servers:
+          - url: http://thelounge:9000

@@ -19,6 +19,7 @@ include:
   - compose/ttrss/ttrss.yaml
   - compose/vikunja/vikunja.yaml
   - compose/watchtower.yaml
+  - compose/thelounge/thelounge.yaml
 
 services:
   traefik:
@@ -56,6 +57,7 @@ services:
       - --entryPoints.ttrss.address=:${PORT_TTRSS}
       - --entryPoints.ttrss.forwardedHeaders.insecure
       - --entryPoints.vikunja.address=:${PORT_VIKUNJA}
+      - --entryPoints.thelounge.address=:${PORT_THELOUNGE}
 
       - --experimental.plugins.sablier.modulename=github.com/sablierapp/sablier
       - --experimental.plugins.sablier.version=v1.10.1
@@ -80,6 +82,7 @@ services:
       - "${PORT_SILVERBULLET}:${PORT_SILVERBULLET}"
       - "${PORT_TTRSS}:${PORT_TTRSS}"
       - "${PORT_VIKUNJA}:${PORT_VIKUNJA}"
+      - "${PORT_THELOUNGE}:${PORT_THELOUNGE}"
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock
@@ -97,6 +100,7 @@ services:
       - ./compose/silverbullet/dynamic.yaml:/etc/traefik/dynamic/silverbullet.yaml
       - ./compose/ttrss/dynamic.yaml:/etc/traefik/dynamic/ttrss.yaml
       - ./compose/vikunja/dynamic.yaml:/etc/traefik/dynamic/vikunja.yaml
+      - ./compose/thelounge/dynamic.yaml:/etc/traefik/dynamic/thelounge.yaml
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`${IP_ADDRESS}`)"
