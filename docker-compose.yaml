@@ -1,5 +1,3 @@
-version: "3"
-
 include:
   - compose/actualbudget/actualbudget.yaml
   # - compose/duckdns.yaml
