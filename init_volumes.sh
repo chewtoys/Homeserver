@@ -31,4 +31,3 @@ mkdir -p volumes/rx-res-minio
 mkdir -p volumes/rx-res-db
 mkdir -p volumes/searxng
 mkdir -p volumes/silverbullet
-mkdir -p volumes/thelounge
