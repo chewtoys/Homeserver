@@ -1,0 +1,13 @@
+http:
+  routers:
+    n8n:
+      entryPoints:
+        - n8n
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: n8n-service
+
+  services:
+    n8n-service:
+      loadBalancer:
+        servers:
+          - url: http://n8n:5678

@@ -22,6 +22,8 @@ mkdir -p volumes/mealie-db
 mkdir -p volumes/manyfold/config
 mkdir -p volumes/manyfold/libraries
 mkdir -p volumes/meili
+mkdir -p volumes/n8n/db
+mkdir -p volumes/n8n/files
 mkdir -p volumes/vikunja/
 mkdir -p volumes/vikunja-db
 mkdir -p volumes/rx-res

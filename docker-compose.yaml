@@ -8,6 +8,7 @@ include:
   - compose/homepage/homepage.yaml
   - compose/manyfold/manyfold.yaml
   - compose/mealie/mealie.yaml
+  - compose/n8n/n8n.yaml
   - compose/newt.yaml
   # - compose/reactive-resume/reactive-resume.yaml
   - compose/redlib/redlib.yaml
@@ -25,7 +26,7 @@ services:
     container_name: traefik
     env_file: .env
     command:
-      # - --log.level=DEBUG
+      - --log.level=DEBUG
       - --api=true
       - --api.dashboard=true
       
@@ -45,6 +46,7 @@ services:
       - --entryPoints.invoiceshelf.address=:${PORT_INVOICESHELF}
       - --entryPoints.manyfold.address=:${PORT_MANYFOLD}
       - --entryPoints.mealie.address=:${PORT_MEALIE}
+      - --entryPoints.n8n.address=:${PORT_N8N}
       - --entryPoints.redlib.address=:${PORT_REDLIB}
       - --entryPoints.rx-res-chrome.address=:${PORT_RX_RES_CHROME}
       - --entryPoints.rx-res-minio.address=:${PORT_RX_RES_MINIO}
@@ -72,6 +74,7 @@ services:
       - "${PORT_INVOICESHELF}:${PORT_INVOICESHELF}"
       - "${PORT_MANYFOLD}:${PORT_MANYFOLD}"
       - "${PORT_MEALIE}:${PORT_MEALIE}"
+      - "${PORT_N8N}:${PORT_N8N}"
       - "${PORT_REDLIB}:${PORT_REDLIB}"
       - "${PORT_RX_RES_CHROME}:${PORT_RX_RES_CHROME}"
       - "${PORT_RX_RES_MINIO}:${PORT_RX_RES_MINIO}"
@@ -92,6 +95,7 @@ services:
       - ./compose/invoiceshelf/dynamic.yaml:/etc/traefik/dynamic/invoiceshelf.yaml
       - ./compose/manyfold/dynamic.yaml:/etc/traefik/dynamic/manyfold.yaml
       - ./compose/mealie/dynamic.yaml:/etc/traefik/dynamic/mealie.yaml
+      - ./compose/n8n/dynamic.yaml:/etc/traefik/dynamic/n8n.yaml
       - ./compose/redlib/dynamic.yaml:/etc/traefik/dynamic/redlib.yaml
       - ./compose/sablier/dynamic.yaml:/etc/traefik/dynamic/sablier.yaml
       - ./compose/searxng/dynamic.yaml:/etc/traefik/dynamic/searxng.yaml

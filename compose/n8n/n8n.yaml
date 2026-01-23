@@ -1,0 +1,40 @@
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    restart: unless-stopped
+    container_name: n8n
+    labels:
+      - "homepage.group=Admin"
+      - homepage.name=N8N
+      - homepage.icon=sh-n8n.svg
+      - homepage.href=http://${IP_ADDRESS}:${PORT_N8N}
+      - homepage.description=Automation
+    environment:
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_HOST=${IP_ADDRESS}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=https
+      - N8N_RUNNERS_ENABLED=true
+      - NODE_ENV=production
+      - WEBHOOK_URL=https://${IP_ADDRESS}:5678/
+      - GENERIC_TIMEZONE=Europe/Rome
+      - TZ=Europe/Rome
+      - N8N_SECURE_COOKIE=false
+    volumes:
+      - ~/volumes/n8n/db:/home/node/.n8n
+      - ~/volumes/n8n/files:/files
+    networks:
+      - frontend
+    depends_on:
+      - traefik
+
+  n8n-chromium:
+    image: ghcr.io/browserless/chromium
+    container_name: n8n-chromium
+    restart: unless-stopped
+    environment:
+      - TOKEN=6R0W53R135510
+    networks:
+      - frontend
+    depends_on:
+      - n8n
