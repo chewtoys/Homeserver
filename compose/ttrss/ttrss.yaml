@@ -3,7 +3,7 @@ services:
     image: nventiveux/ttrss:latest
     container_name: ttrss
     environment:
-      - TTRSS_SELF_URL_PATH=https://${IP_ADDRESS}:${PORT_TTRSS}
+      - TTRSS_SELF_URL_PATH=https://${TTRSS_ENDPOINT_URL}
       - TTRSS_DB_HOST=ttrss-db
       - TTRSS_DB_TYPE=pgsql
       - TTRSS_DB_USER=ttrss
@@ -18,7 +18,7 @@ services:
       - homepage.group=RSS
       - homepage.name=Tiny Tiny RSS
       - homepage.icon=tinytinyrss.png
-      - homepage.href=http://${IP_ADDRESS}:${PORT_TTRSS}
+      - homepage.href=https://${TTRSS_ENDPOINT_URL}
       - homepage.description=Main news outlet.
     networks:
       - frontend
