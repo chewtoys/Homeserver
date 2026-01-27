@@ -1,0 +1,13 @@
+http:
+  routers:
+    tubesync:
+      entryPoints:
+        - tubesync
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: tubesync-service
+
+  services:
+    tubesync-service:
+      loadBalancer:
+        servers:
+          - url: http://tubesync:4848

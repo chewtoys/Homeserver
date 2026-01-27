@@ -16,6 +16,7 @@ include:
   - compose/searxng/searxng.yaml
   - compose/silverbullet/silverbullet.yaml
   - compose/ttrss/ttrss.yaml
+  - compose/tubesync/tubesync.yaml
   - compose/vikunja/vikunja.yaml
   - compose/watchtower.yaml
 
@@ -55,6 +56,7 @@ services:
       - --entryPoints.traefik.address=:${PORT_DASHBOARD}
       - --entryPoints.ttrss.address=:${PORT_TTRSS}
       - --entryPoints.ttrss.forwardedHeaders.insecure
+      - --entryPoints.tubesync.address=:${PORT_TUBESYNC}
       - --entryPoints.vikunja.address=:${PORT_VIKUNJA}
 
       - --experimental.plugins.sablier.modulename=github.com/sablierapp/sablier
@@ -80,6 +82,7 @@ services:
       - "${PORT_SEARXNG}:${PORT_SEARXNG}"
       - "${PORT_SILVERBULLET}:${PORT_SILVERBULLET}"
       - "${PORT_TTRSS}:${PORT_TTRSS}"
+      - "${PORT_TUBESYNC}:${PORT_TUBESYNC}"
       - "${PORT_VIKUNJA}:${PORT_VIKUNJA}"
     volumes:
       # So that Traefik can listen to the Docker events
@@ -98,6 +101,7 @@ services:
       - ./compose/searxng/dynamic.yaml:/etc/traefik/dynamic/searxng.yaml
       - ./compose/silverbullet/dynamic.yaml:/etc/traefik/dynamic/silverbullet.yaml
       - ./compose/ttrss/dynamic.yaml:/etc/traefik/dynamic/ttrss.yaml
+      - ./compose/tubesync/dynamic.yaml:/etc/traefik/dynamic/tubesync.yaml
       - ./compose/vikunja/dynamic.yaml:/etc/traefik/dynamic/vikunja.yaml
     labels:
       - "traefik.enable=true"
