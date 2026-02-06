@@ -1,0 +1,22 @@
+services:
+  syncthing:
+    image: lscr.io/linuxserver/syncthing:latest
+    container_name: syncthing
+    labels:
+      - homepage.group=Web
+      - homepage.name=Syncthing
+      - homepage.icon=syncthing.svg
+      - homepage.href=http://${IP_ADDRESS}:${PORT_SYNCTHING}
+      - homepage.description=Sync files
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - ~/volumes/syncthing-config:/config
+      - ~/volumes/tubesync-downloads/video:/tubesync-downloads
+    restart: unless-stopped
+    depends_on:
+      - traefik
+    networks:
+      - frontend

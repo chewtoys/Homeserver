@@ -1,0 +1,13 @@
+http:
+  routers:
+    syncthing:
+      entryPoints:
+        - syncthing
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: syncthing-service
+
+  services:
+    syncthing-service:
+      loadBalancer:
+        servers:
+          - url: http://syncthing:8384

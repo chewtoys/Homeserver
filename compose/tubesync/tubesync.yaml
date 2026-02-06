@@ -17,7 +17,9 @@ services:
       - TZ=Europe/Paris
       - PUID=1000
       - PGID=1000
+      - TUBESYNC_DEBUG=True
     depends_on:
       - traefik
+      - syncthing
     networks:
       - frontend

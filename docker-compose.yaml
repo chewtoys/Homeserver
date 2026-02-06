@@ -15,6 +15,7 @@ include:
   - compose/sablier/sablier.yaml
   - compose/searxng/searxng.yaml
   - compose/silverbullet/silverbullet.yaml
+  - compose/syncthing/syncthing.yaml
   - compose/ttrss/ttrss.yaml
   - compose/tubesync/tubesync.yaml
   - compose/vikunja/vikunja.yaml
@@ -53,6 +54,7 @@ services:
       - --entryPoints.rx-resume.address=:${PORT_RX_RES}
       - --entryPoints.searxng.address=:${PORT_SEARXNG}
       - --entryPoints.silverbullet.address=:${PORT_SILVERBULLET}
+      - --entryPoints.syncthing.address=:${PORT_SYNCTHING}
       - --entryPoints.traefik.address=:${PORT_DASHBOARD}
       - --entryPoints.ttrss.address=:${PORT_TTRSS}
       - --entryPoints.ttrss.forwardedHeaders.insecure
@@ -81,6 +83,7 @@ services:
       - "${PORT_RX_RES}:${PORT_RX_RES}"
       - "${PORT_SEARXNG}:${PORT_SEARXNG}"
       - "${PORT_SILVERBULLET}:${PORT_SILVERBULLET}"
+      - "${PORT_SYNCTHING}:${PORT_SYNCTHING}"
       - "${PORT_TTRSS}:${PORT_TTRSS}"
       - "${PORT_TUBESYNC}:${PORT_TUBESYNC}"
       - "${PORT_VIKUNJA}:${PORT_VIKUNJA}"
@@ -100,6 +103,7 @@ services:
       - ./compose/sablier/dynamic.yaml:/etc/traefik/dynamic/sablier.yaml
       - ./compose/searxng/dynamic.yaml:/etc/traefik/dynamic/searxng.yaml
       - ./compose/silverbullet/dynamic.yaml:/etc/traefik/dynamic/silverbullet.yaml
+      - ./compose/syncthing/dynamic.yaml:/etc/traefik/dynamic/syncthing.yaml
       - ./compose/ttrss/dynamic.yaml:/etc/traefik/dynamic/ttrss.yaml
       - ./compose/tubesync/dynamic.yaml:/etc/traefik/dynamic/tubesync.yaml
       - ./compose/vikunja/dynamic.yaml:/etc/traefik/dynamic/vikunja.yaml
