@@ -26,9 +26,6 @@ mkdir -p volumes/n8n/db
 mkdir -p volumes/n8n/files
 mkdir -p volumes/vikunja/
 mkdir -p volumes/vikunja-db
-mkdir -p volumes/rx-res
-mkdir -p volumes/rx-res-minio
-mkdir -p volumes/rx-res-db
 mkdir -p volumes/searxng
 mkdir -p volumes/silverbullet
 mkdir -p volumes/syncthing

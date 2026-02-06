@@ -10,7 +10,6 @@ include:
   - compose/mealie/mealie.yaml
   - compose/n8n/n8n.yaml
   - compose/newt.yaml
-  # - compose/reactive-resume/reactive-resume.yaml
   - compose/redlib/redlib.yaml
   - compose/sablier/sablier.yaml
   - compose/searxng/searxng.yaml
@@ -49,9 +48,6 @@ services:
       - --entryPoints.mealie.address=:${PORT_MEALIE}
       - --entryPoints.n8n.address=:${PORT_N8N}
       - --entryPoints.redlib.address=:${PORT_REDLIB}
-      - --entryPoints.rx-res-chrome.address=:${PORT_RX_RES_CHROME}
-      - --entryPoints.rx-res-minio.address=:${PORT_RX_RES_MINIO}
-      - --entryPoints.rx-resume.address=:${PORT_RX_RES}
       - --entryPoints.searxng.address=:${PORT_SEARXNG}
       - --entryPoints.silverbullet.address=:${PORT_SILVERBULLET}
       - --entryPoints.syncthing.address=:${PORT_SYNCTHING}
@@ -78,9 +74,6 @@ services:
       - "${PORT_MEALIE}:${PORT_MEALIE}"
       - "${PORT_N8N}:${PORT_N8N}"
       - "${PORT_REDLIB}:${PORT_REDLIB}"
-      - "${PORT_RX_RES_CHROME}:${PORT_RX_RES_CHROME}"
-      - "${PORT_RX_RES_MINIO}:${PORT_RX_RES_MINIO}"
-      - "${PORT_RX_RES}:${PORT_RX_RES}"
       - "${PORT_SEARXNG}:${PORT_SEARXNG}"
       - "${PORT_SILVERBULLET}:${PORT_SILVERBULLET}"
       - "${PORT_SYNCTHING}:${PORT_SYNCTHING}"
