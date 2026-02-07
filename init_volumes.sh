@@ -31,5 +31,3 @@ mkdir -p volumes/vikunja-db
 mkdir -p volumes/searxng
 mkdir -p volumes/silverbullet
 mkdir -p volumes/syncthing
-mkdir -p volumes/tubesync-config
-mkdir -p volumes/tubesync-downloads

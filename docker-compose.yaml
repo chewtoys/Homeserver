@@ -17,7 +17,6 @@ include:
   - compose/silverbullet/silverbullet.yaml
   - compose/syncthing/syncthing.yaml
   - compose/ttrss/ttrss.yaml
-  - compose/tubesync/tubesync.yaml
   - compose/vikunja/vikunja.yaml
   - compose/watchtower.yaml
 
@@ -55,7 +54,6 @@ services:
       - --entryPoints.traefik.address=:${PORT_DASHBOARD}
       - --entryPoints.ttrss.address=:${PORT_TTRSS}
       - --entryPoints.ttrss.forwardedHeaders.insecure
-      - --entryPoints.tubesync.address=:${PORT_TUBESYNC}
       - --entryPoints.vikunja.address=:${PORT_VIKUNJA}
       - --entryPoints.pinchflat.address=:${PORT_PINCHFLAT}
 
@@ -80,7 +78,6 @@ services:
       - "${PORT_SILVERBULLET}:${PORT_SILVERBULLET}"
       - "${PORT_SYNCTHING}:${PORT_SYNCTHING}"
       - "${PORT_TTRSS}:${PORT_TTRSS}"
-      - "${PORT_TUBESYNC}:${PORT_TUBESYNC}"
       - "${PORT_VIKUNJA}:${PORT_VIKUNJA}"
       - "${PORT_PINCHFLAT}:${PORT_PINCHFLAT}"
     volumes:
@@ -102,7 +99,6 @@ services:
       - ./compose/silverbullet/dynamic.yaml:/etc/traefik/dynamic/silverbullet.yaml
       - ./compose/syncthing/dynamic.yaml:/etc/traefik/dynamic/syncthing.yaml
       - ./compose/ttrss/dynamic.yaml:/etc/traefik/dynamic/ttrss.yaml
-      - ./compose/tubesync/dynamic.yaml:/etc/traefik/dynamic/tubesync.yaml
       - ./compose/vikunja/dynamic.yaml:/etc/traefik/dynamic/vikunja.yaml
     labels:
       - "traefik.enable=true"
