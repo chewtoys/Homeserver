@@ -15,6 +15,7 @@ services:
     volumes:
       - ~/volumes/syncthing-config:/config
       - ~/volumes/tubesync-downloads/video:/tubesync-downloads
+      - ~/volumes/pinchflat-downloads:/pinchflat-downloads
     restart: unless-stopped
     depends_on:
       - traefik

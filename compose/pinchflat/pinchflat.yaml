@@ -1,0 +1,23 @@
+services:
+  pinchflat:
+    image: ghcr.io/kieraneglin/pinchflat:latest
+    container_name: pinchflat
+    restart: unless-stopped
+    labels:
+      - homepage.group=Web
+      - homepage.name=Pinchflat
+      - homepage.icon=pinchflat.png
+      - homepage.href=http://${IP_ADDRESS}:${PORT_PINCHFLAT}
+      - homepage.description=Youtube Downloader
+    environment:
+      - TZ=Europe/Rome
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ~/volumes/pinchflat-config:/config
+      - ~/volumes/pinchflat-downloads:/downloads
+    depends_on:
+      - traefik
+      - syncthing
+    networks:
+      - frontend

@@ -24,6 +24,8 @@ mkdir -p volumes/manyfold/libraries
 mkdir -p volumes/meili
 mkdir -p volumes/n8n/db
 mkdir -p volumes/n8n/files
+mkdir -p volumes/pinchflat-config
+mkdir -p volumes/pinchflat-downloads
 mkdir -p volumes/vikunja/
 mkdir -p volumes/vikunja-db
 mkdir -p volumes/searxng

@@ -1,0 +1,13 @@
+http:
+  routers:
+    pinchflat:
+      entryPoints:
+        - pinchflat
+      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      service: pinchflat-service
+
+  services:
+    pinchflat-service:
+      loadBalancer:
+        servers:
+          - url: http://pinchflat:8945
