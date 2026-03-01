@@ -10,6 +10,7 @@ fi
 if [ "$*" = 'supervisord -c /etc/supervisor/supervisord.conf' ]; then
 
     # Check for required folders and create if needed
+    [ -d /var/www/html/public ] || mkdir -p /var/www/html/public
     [ -d /var/www/html/storage/app/public ] || mkdir -p /var/www/html/storage/app/public
     [ -d /var/www/html/storage/framework/sessions ] || mkdir -p /var/www/html/storage/framework/sessions
     [ -d /var/www/html/storage/framework/views ] || mkdir -p /var/www/html/storage/framework/views
@@ -24,8 +25,11 @@ if [ "$*" = 'supervisord -c /etc/supervisor/supervisord.conf' ]; then
         cp -r /tmp/public/* \
             /tmp/public/.htaccess \
             /tmp/public/.well-known \
-            /var/www/html/public/ && \
-            rm -rf /tmp/public/*
+            /var/www/html/public/ &&
+            rm -rf /tmp/public/.htaccess \
+                /tmp/public/.well-known \
+                /tmp/public/*
+
     fi
     echo "Public Folder is up to date"
 
@@ -42,7 +46,7 @@ if [ "$*" = 'supervisord -c /etc/supervisor/supervisord.conf' ]; then
 
     # Clear and cache config in production
     if [ "$APP_ENV" = "production" ]; then
-        runuser -u www-data -- php artisan migrate --force       
+        runuser -u www-data -- php artisan migrate --force
         runuser -u www-data -- php artisan cache:clear # Clear after the migration
         runuser -u www-data -- php artisan ninja:design-update
         runuser -u www-data -- php artisan optimize
@@ -50,7 +54,7 @@ if [ "$*" = 'supervisord -c /etc/supervisor/supervisord.conf' ]; then
         # If first IN run, it needs to be initialized
         if [ "$(runuser -u www-data -- php artisan tinker --execute='echo Schema::hasTable("accounts") && !App\Models\Account::all()->first();')" = "1" ]; then
             echo "Running initialization..."
-            
+
             runuser -u www-data -- php artisan db:seed --force
 
             if [ -n "${IN_USER_EMAIL}" ] && [ -n "${IN_PASSWORD}" ]; then
