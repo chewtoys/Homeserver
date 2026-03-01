@@ -12,18 +12,6 @@ http:
           sablierUrl: http://sablier:10000
           sessionDuration: 1m
 
-    sablier-invoiceshelf:
-      plugin:
-        sablier:
-          group: invoiceshelf
-          dynamic:
-            displayName: Invoiceshelf startup
-            refreshFrequency: 5s
-            showDetails: "true"
-            theme: hacker-terminal
-          sablierUrl: http://sablier:10000
-          sessionDuration: 15m
-
     sablier-invoiceninja:
       plugin:
         sablier:

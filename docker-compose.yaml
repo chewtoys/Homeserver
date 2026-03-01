@@ -2,7 +2,6 @@ include:
   - compose/actualbudget/actualbudget.yaml
   # - compose/duckdns.yaml
   - compose/freshrss/freshrss.yaml
-  - compose/invoiceshelf/invoiceshelf.yaml
   - compose/invoiceninja/invoiceninja.yaml
   - compose/hoarder/hoarder.yaml
   - compose/homepage/homepage.yaml
@@ -43,7 +42,6 @@ services:
       - --entryPoints.hoarder.address=:${PORT_HOARDER}
       - --entryPoints.homepage.address=:${PORT_HOMEPAGE}
       - --entryPoints.invoiceninja.address=:${PORT_INVOICENINJA}
-      - --entryPoints.invoiceshelf.address=:${PORT_INVOICESHELF}
       - --entryPoints.manyfold.address=:${PORT_MANYFOLD}
       - --entryPoints.mealie.address=:${PORT_MEALIE}
       - --entryPoints.n8n.address=:${PORT_N8N}
@@ -69,7 +67,6 @@ services:
       - "${PORT_HOARDER}:${PORT_HOARDER}"
       - "${PORT_HOMEPAGE}:${PORT_HOMEPAGE}"
       - "${PORT_INVOICENINJA}:${PORT_INVOICENINJA}"
-      - "${PORT_INVOICESHELF}:${PORT_INVOICESHELF}"
       - "${PORT_MANYFOLD}:${PORT_MANYFOLD}"
       - "${PORT_MEALIE}:${PORT_MEALIE}"
       - "${PORT_N8N}:${PORT_N8N}"
@@ -88,7 +85,6 @@ services:
       - ./compose/hoarder/dynamic.yaml:/etc/traefik/dynamic/hoarder.yaml
       - ./compose/homepage/dynamic.yaml:/etc/traefik/dynamic/homepage.yaml
       - ./compose/invoiceninja/dynamic.yaml:/etc/traefik/dynamic/invoiceninja.yaml
-      - ./compose/invoiceshelf/dynamic.yaml:/etc/traefik/dynamic/invoiceshelf.yaml
       - ./compose/manyfold/dynamic.yaml:/etc/traefik/dynamic/manyfold.yaml
       - ./compose/mealie/dynamic.yaml:/etc/traefik/dynamic/mealie.yaml
       - ./compose/n8n/dynamic.yaml:/etc/traefik/dynamic/n8n.yaml

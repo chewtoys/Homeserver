@@ -13,9 +13,6 @@ mkdir -p volumes/invoiceninja/public
 mkdir -p volumes/invoiceninja/storage
 mkdir -p volumes/invoiceninja-redis
 mkdir -p volumes/invoiceninja-db
-mkdir -p volumes/invoiceshelf/data
-mkdir -p volumes/invoiceshelf/conf
-mkdir -p volumes/invoiceshelf-db
 mkdir -p volumes/hoarder
 mkdir -p volumes/mealie
 mkdir -p volumes/mealie-db
