@@ -3,11 +3,13 @@ http:
     n8n:
       entryPoints:
         - n8n
-      rule: Host(`{{ env "IP_ADDRESS" }}`)
+      rule: Host(`{{ env "N8N_ENDPOINT_URL" }}`)
       service: n8n-service
+      tls:
+        certResolver: letsencrypt
 
   services:
     n8n-service:
       loadBalancer:
         servers:
-          - url: http://n8n:5678
+          - url: http://n8n:{{ env "PORT_N8N" }}

@@ -7,19 +7,20 @@ services:
       - "homepage.group=Admin"
       - homepage.name=N8N
       - homepage.icon=sh-n8n.svg
-      - homepage.href=http://${IP_ADDRESS}:${PORT_N8N}
+      - homepage.href=https://${N8N_ENDPOINT_URL}:${PORT_N8N}
       - homepage.description=Automation
     environment:
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
-      - N8N_HOST=${IP_ADDRESS}
-      - N8N_PORT=5678
+      - N8N_HOST=${N8N_ENDPOINT_URL}
+      - N8N_PORT=${PORT_N8N}
       - N8N_PROTOCOL=https
       - N8N_RUNNERS_ENABLED=true
       - NODE_ENV=production
-      - WEBHOOK_URL=https://${IP_ADDRESS}:5678/
+      - WEBHOOK_URL=https://${N8N_ENDPOINT_URL}:${PORT_N8N}/
       - GENERIC_TIMEZONE=Europe/Rome
       - TZ=Europe/Rome
       - N8N_SECURE_COOKIE=false
+      - N8N_AI_ENABLED=true
     volumes:
       - ~/volumes/n8n/db:/home/node/.n8n
       - ~/volumes/n8n/files:/files
